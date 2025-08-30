@@ -1,8 +1,11 @@
-name: SAST with SonarQube
+name: SonarQube Scan
+
 on:
-  pull_request:
   push:
-    branches: [ main ]
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -25,7 +28,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=${{ github.repository }}
+            -Dsonar.projectKey=webgoat
             -Dsonar.java.binaries=target/classes
 
       - name: Quality Gate

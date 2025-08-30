@@ -25,12 +25,10 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=my-forked-project
+            -Dsonar.projectKey=${{ github.repository }}
             -Dsonar.java.binaries=target/classes
 
       - name: Quality Gate
         uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
